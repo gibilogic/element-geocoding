@@ -26,7 +26,7 @@ php composer.phar require gibilogic/element-geocoding
 
 ## Usage
 
-Click [here](Resources/doc/index.md) to read the full bundle's documentation.
+*Work in progress*
 
 ## Contributions
 
