@@ -1,0 +1,19 @@
+{
+    "name": "gibilogic/element-geocoding",
+    "type": "library",
+    "description": "GiBiLogic Elements - Geocoding",
+    "keywords": [],
+    "homepage": "http://www.gibilogic.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "GiBilogic Srl",
+            "homepage": "http://www.gibilogic.com",
+            "email":    "info@gibilogic.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Gibilogic\\Elements\\Geocoding\\": "" }
+    }
+}
