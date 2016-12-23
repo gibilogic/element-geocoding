@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gibilogic\Elements\Slugger\Tests;
+namespace Gibilogic\Elements\Geocoding\Tests;
 
 use Gibilogic\Elements\Geocoding\Point;
 
@@ -20,13 +20,16 @@ use Gibilogic\Elements\Geocoding\Point;
  * @see Point
  * @see \PHPUnit_Framework_TestCase
  */
-class CoordinatesTest extends \PHPUnit_Framework_TestCase
+class PointTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test for null or empty string
+     * Tests the class constructor.
      */
     public function testConstructor()
     {
-        $coords = new Point(45.123456789, 20.123456789);
+        $point = new Point(45.123456789, 20.123456789);
+
+        $this->assertEquals(45.1234568, $point->getLatitude());
+        $this->assertEquals(20.1234568, $point->getLongitude());
     }
 }
