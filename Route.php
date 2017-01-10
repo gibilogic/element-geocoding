@@ -37,8 +37,8 @@ class Route
     /**
      * Class constructor.
      *
-     * @param Point $from
-     * @param Point $to
+     * @param Point $from The first point
+     * @param Point $to The second point
      */
     public function __construct(Point $from, Point $to)
     {
@@ -56,6 +56,12 @@ class Route
     }
 
     /**
+     * Compares the distances between routes.
+     *
+     * Returns < 0 if this route's distance is less than the other's distance;
+     * > 0 if this route's distance is greater than the other's distance, and
+     * 0 if their distances are equal.
+     *
      * @param Route $other
      * @return int
      */

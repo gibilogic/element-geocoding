@@ -56,7 +56,6 @@ class GoogleGeocodeService
      *
      * @param GeocodeableInterface $object The object to be geocoded
      * @return bool `TRUE` on success, `FALSE` otherwise
-     * @see GeocodeableInterface
      */
     public function geocode(GeocodeableInterface $object)
     {

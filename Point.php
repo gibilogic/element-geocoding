@@ -11,6 +11,8 @@
 
 namespace Gibilogic\Elements\Geocoding;
 
+use InvalidArgumentException;
+
 /**
  * A geographical point with latitude and longitude.
  *
@@ -38,9 +40,18 @@ class Point
      *
      * @param float $latitude The latitude in degrees
      * @param float $longitude The longitude in degrees
+     * @throws InvalidArgumentException
      */
     public function __construct($latitude, $longitude)
     {
+        if ($latitude > 90 || $latitude < -90) {
+            throw new InvalidArgumentException(sprintf('Invalid latitude value: %s', $latitude));
+        }
+
+        if ($longitude > 180 || $longitude < -180) {
+            throw new InvalidArgumentException(sprintf('Invalid longitude value: %s', $longitude));
+        }
+
         $this->latitude = round($latitude, 7);
         $this->longitude = round($longitude, 7);
     }
@@ -124,7 +135,7 @@ class Point
      */
     private function haversine($radiants)
     {
-        return (1 - cos($radiants)) /2;
+        return (1 - cos($radiants)) / 2;
     }
 
     /**
@@ -133,6 +144,6 @@ class Point
      */
     private function toRadians($degrees)
     {
-        return empty($degrees) ? 0 : $degrees * (pi() / 180);
+        return empty($degrees) ? 0 : round($degrees * (pi() / 180), 7);
     }
 }

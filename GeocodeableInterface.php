@@ -29,8 +29,8 @@ interface GeocodeableInterface
     public function getCoordinates();
 
     /**
-     * @param Point $coordinates The new coordinates
+     * @param Point $point The new coordinates
      * @return mixed
      */
-    public function setCoordinates(Point $coordinates);
+    public function setCoordinates(Point $point);
 }

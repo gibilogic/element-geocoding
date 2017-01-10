@@ -8,7 +8,7 @@ We got bored, so we decided to collect all these bits and pieces of code in read
 
 This package contains useful classes for working with geographical coordinates.
 
-It uses Google's geocoding service; you can find more informations on the [official documentation](https://developers.google.com/maps/documentation/geocoding/start).
+It uses Google's geocoding service; you can find more informations on its [official documentation](https://developers.google.com/maps/documentation/geocoding/start).
 
 ## Installation
 
@@ -26,7 +26,82 @@ php composer.phar require gibilogic/element-geocoding
 
 ## Usage
 
-*Work in progress*
+### Basics
+
+Use the `Point` class to manage geographical points with latitude and longitude:
+
+```php
+$milan = new Point(45.464161, 9.190336);
+$rome = new Point(41.893056, 12.482778);
+```
+
+Use the `Route` class to manage relation between two points:
+
+```php
+$route = new Route($milan, $rome);
+$distance = $route->getDistance();
+```
+
+`Route` instances can also be compared by using the `compareTo` method:
+
+```php
+$milanRomeRoute = new Route($milan, $rome);
+$milanTurinRoute = new Route($milan, $turin);
+
+$comparison = $milanRomeRoute->compareTo($milanTurinRoute);
+```
+
+Use the `geocodeAddress` method of the `GoogleGeocodeService` to get a `Point` instance from an address:
+
+```php
+$point = $googleGeocodeService->geocodeAddress('via Aldo Moro 48, 25124 Brescia, Italy');
+```
+
+### Advanced
+
+Add and implement the `GeocodeableInterface` to existing classes:
+
+```php
+class Address implements GeocodeableInterface
+{
+    protected $address;
+    protected $zipCode;
+    protected $city;
+    protected $province;
+
+    protected $latitude;
+    protected $longitude;
+
+    // ...
+
+    public function getAddressForGeocoding()
+    {
+        return sprintf('%s, %s %s (%s), Italy',
+            $this->address,
+            $this->zipCode,
+            $this->city,
+            $this->province
+        );
+    }
+
+    public function getCoordinates()
+    {
+        return new Point($this->latitude, $this->longitude);
+    }
+
+    public function setCoordinates(Point $point)
+    {
+        $this->latitude = $point->getLatitude();
+        $this->longitude = $point->getLongitude();
+    }
+}
+```
+
+Then use the `geocode` method of the `GoogleGeocodeService`:
+
+```php
+$point = $googleGeocodeService->geocode($address);
+```
 
 ## Contributions
 
