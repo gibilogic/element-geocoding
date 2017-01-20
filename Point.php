@@ -54,7 +54,7 @@ class Point
      * @param string $identifier An external identifier for this point
      * @throws InvalidArgumentException
      */
-    public function __construct($latitude, $longitude, $identifier)
+    public function __construct($latitude, $longitude, $identifier = null)
     {
         if ($latitude > 90 || $latitude < -90) {
             throw new InvalidArgumentException(sprintf('Invalid latitude value: %s', $latitude));
