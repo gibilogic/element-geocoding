@@ -155,13 +155,13 @@ class GoogleGeocodeService
             CURLOPT_RETURNTRANSFER => true,
         ]);
 
-        $response = curl_exec($curlInstance);
+        $response = json_decode(curl_exec($curlInstance), true);
         curl_close($curlInstance);
 
         if (empty($response) || self::SUCCESSFUL_RESPONSE_STATUS != $response['status']) {
             throw new \Exception('Unable to get a valid response from the geocode service');
         }
 
-        return json_decode($response, true);
+        return $response;
     }
 }
