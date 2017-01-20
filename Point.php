@@ -26,23 +26,35 @@ class Point
     const EARTH_RADIUS = 6371;
 
     /**
-     * @var float $latitude The latitude in degrees
+     * The latitude in degrees
+     *
+     * @var float $latitude
      */
     protected $latitude;
 
     /**
-     * @var float $longitude The longitude in degrees
+     * The longitude in degrees
+     *
+     * @var float $longitude
      */
     protected $longitude;
+
+    /**
+     * An external identifier for this point (i.e. to link to an object in your application)
+     *
+     * @var string $identifier
+     */
+    protected $identifier;
 
     /**
      * Class constructor.
      *
      * @param float $latitude The latitude in degrees
      * @param float $longitude The longitude in degrees
+     * @param string $identifier An external identifier for this point
      * @throws InvalidArgumentException
      */
-    public function __construct($latitude, $longitude)
+    public function __construct($latitude, $longitude, $identifier)
     {
         if ($latitude > 90 || $latitude < -90) {
             throw new InvalidArgumentException(sprintf('Invalid latitude value: %s', $latitude));
@@ -54,6 +66,7 @@ class Point
 
         $this->latitude = round($latitude, 7);
         $this->longitude = round($longitude, 7);
+        $this->identifier = $identifier;
     }
 
     /**
@@ -106,6 +119,14 @@ class Point
     public function getLongitudeInRadiants()
     {
         return $this->toRadians($this->longitude);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**
