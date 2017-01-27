@@ -158,8 +158,12 @@ class GoogleGeocodeService
         $response = json_decode(curl_exec($curlInstance), true);
         curl_close($curlInstance);
 
-        if (empty($response) || self::SUCCESSFUL_RESPONSE_STATUS != $response['status']) {
-            throw new \Exception('Unable to get a valid response from the geocode service');
+        if (empty($response)) {
+            throw new \Exception('Empty response from the geocode service');
+        }
+
+        if (self::SUCCESSFUL_RESPONSE_STATUS != $response['status']) {
+            throw new \Exception('Invalid response from the geocode service [' . print_r($response, true) . ']');
         }
 
         return $response;
