@@ -32,6 +32,11 @@ class GoogleGeocodeService
     const SUCCESSFUL_RESPONSE_STATUS = 'OK';
 
     /**
+     * Status for "over quota" error message
+     */
+    const OVER_QUOTA_RESPONSE_STATUS = 'OVER_QUERY_LIMIT';
+
+    /**
      * @var string $apiKey A valid Google API key
      */
     protected $apiKey;
@@ -160,6 +165,10 @@ class GoogleGeocodeService
 
         if (empty($response)) {
             throw new \Exception('Empty response from the geocode service');
+        }
+
+        if (self::OVER_QUOTA_RESPONSE_STATUS == $response['status']) {
+            throw new \Exception('API usage limit exceeded for your API key [' . print_r($response, true) . ']');
         }
 
         if (self::SUCCESSFUL_RESPONSE_STATUS != $response['status']) {
