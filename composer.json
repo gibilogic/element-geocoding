@@ -3,16 +3,23 @@
     "type": "library",
     "description": "GiBiLogic Elements - Geocoding",
     "keywords": [],
-    "homepage": "http://www.gibilogic.com",
+    "homepage": "https://gibilogic.com",
     "license": "MIT",
     "authors": [
         {
             "name":     "GiBilogic Srl",
-            "homepage": "http://www.gibilogic.com",
+            "homepage": "https://gibilogic.com",
             "email":    "info@gibilogic.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=5.5",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8 || ^5.0"
+    },
     "autoload": {
         "psr-4": { "Gibilogic\\Elements\\Geocoding\\": "" }
     }
