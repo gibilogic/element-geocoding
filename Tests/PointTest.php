@@ -18,16 +18,16 @@ use Gibilogic\Elements\Geocoding\Point;
  *
  * @author Matteo Guindani https://github.com/Ingannatore
  * @see Point
- * @see \PHPUnit_Framework_TestCase
+ * @see \PHPUnit\Framework\TestCase
  */
-class PointTest extends \PHPUnit_Framework_TestCase
+class PointTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Tests for invalid latitude values during class construction.
      */
     public function testInvalidLatitude()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Point(91, 0);
     }
 
@@ -36,7 +36,7 @@ class PointTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidLongitude()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Point(0, 181);
     }
 

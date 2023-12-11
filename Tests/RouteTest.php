@@ -19,9 +19,9 @@ use Gibilogic\Elements\Geocoding\Route;
  *
  * @author Matteo Guindani https://github.com/Ingannatore
  * @see Route
- * @see \PHPUnit_Framework_TestCase
+ * @see \PHPUnit\Framework\TestCase
  */
-class RouteTest extends \PHPUnit_Framework_TestCase
+class RouteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Tests the calculation of distance between points.
