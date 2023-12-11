@@ -114,7 +114,7 @@ class GoogleGeocodeService
         }
 
         if ($sortByDistance) {
-            usort($routes, function(Route $a, Route $b) {
+            usort($routes, function (Route $a, Route $b) {
                 return $a->compareTo($b);
             });
         }
